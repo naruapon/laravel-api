@@ -2,6 +2,8 @@
 
 เอกสารนี้อธิบายขั้นตอนการสร้าง RESTful API สำหรับการจัดการข้อมูลสินค้า (มือถือ) โดยใช้ Laravel Framework, ฐานข้อมูล SQLite, และสร้างเอกสารประกอบ API ด้วย Swagger (l5-swagger)
 
+**หมายเหตุ**: คำสั่งบางอย่าง เช่น `php artisan key:generate`, `touch database/database.sqlite`, `php artisan migrate` และ `php artisan db:seed` อาจถูกรันโดยอัตโนมัติระหว่างการตั้งค่าสภาพแวดล้อมหรือเมื่อโปรเจกต์ถูกสร้างขึ้นครั้งแรก
+
 ## 1. การตั้งค่าโปรเจกต์และฐานข้อมูล
 
 เริ่มต้นจากการสร้างโปรเจกต์ Laravel และตั้งค่าให้ใช้ฐานข้อมูล SQLite
@@ -14,13 +16,25 @@
 DB_CONNECTION=sqlite
 ```
 
-### 1.2. สร้างไฟล์ฐานข้อมูล
+### 1.2. สร้าง Application Key
 
-สร้างไฟล์ฐานข้อมูลเปล่าๆ ขึ้นมาในไดเรกทอรี `database/`
+Laravel ต้องการ Application Key สำหรับการเข้ารหัสข้อมูล หากยังไม่มี สามารถสร้างได้ด้วยคำสั่ง:
+
+```bash
+php artisan key:generate
+```
+
+คำสั่งนี้จะสร้างคีย์ที่ไม่ซ้ำกันและบันทึกลงในไฟล์ `.env` โดยอัตโนมัติ
+
+### 1.3. สร้างไฟล์ฐานข้อมูล
+
+สร้างไฟล์ฐานข้อมูลเปล่าๆ ขึ้นมาในไดเรกทอรี `database/` สำหรับ SQLite
 
 ```bash
 touch database/database.sqlite
 ```
+
+คำสั่งนี้จะสร้างไฟล์ `database.sqlite` เปล่าๆ ขึ้นมา เพื่อให้ Laravel สามารถเชื่อมต่อและสร้างตารางได้
 
 ## 2. การสร้างตารางสินค้า (Products)
 
@@ -57,6 +71,8 @@ public function up(): void
 ```bash
 php artisan migrate
 ```
+
+คำสั่งนี้จะรันไฟล์ migration ทั้งหมดที่ยังไม่ได้รันในโปรเจกต์ และสร้างตาราง `products` รวมถึงตารางอื่นๆ ที่ Laravel ต้องการ
 
 ## 3. สร้าง Model และ Controller
 
@@ -137,6 +153,8 @@ php artisan make:seeder ProductSeeder
 ```bash
 php artisan db:seed
 ```
+
+คำสั่งนี้จะรัน Seeder ที่กำหนดไว้ใน `DatabaseSeeder.php` หรือรัน Seeder ที่ระบุโดยตรง เพื่อใส่ข้อมูลเริ่มต้นลงในตาราง เช่น ข้อมูลสินค้าตัวอย่าง
 
 ## 6. การสร้างเอกสาร API ด้วย Swagger
 

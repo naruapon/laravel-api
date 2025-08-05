@@ -9,7 +9,7 @@ class ProductController extends Controller
 {
     /**
      * @OA\Get(
-     *      path="/products",
+     *      path="/api/products",
      *      operationId="getProductsList",
      *      tags={"Products"},
      *      summary="Get list of products",
@@ -28,7 +28,7 @@ class ProductController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/products",
+     *      path="/api/products",
      *      operationId="storeProduct",
      *      tags={"Products"},
      *      summary="Store new product",
@@ -56,7 +56,7 @@ class ProductController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/products/{id}",
+     *      path="/api/products/{id}",
      *      operationId="getProductById",
      *      tags={"Products"},
      *      summary="Get product information",
@@ -84,7 +84,7 @@ class ProductController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/products/{id}",
+     *      path="/api/products/{id}",
      *      operationId="updateProduct",
      *      tags={"Products"},
      *      summary="Update existing product",
@@ -123,7 +123,7 @@ class ProductController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/products/{id}",
+     *      path="/api/products/{id}",
      *      operationId="deleteProduct",
      *      tags={"Products"},
      *      summary="Delete existing product",
