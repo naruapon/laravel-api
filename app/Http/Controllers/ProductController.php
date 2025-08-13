@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     /**
+    /**
      * @OA\Get(
      *      path="/api/products",
      *      operationId="getProductsList",
